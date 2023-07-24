@@ -64,7 +64,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
-									"sqlReaderQuery": "SELECT * FROM @{concat(dataset().schemaname,'.',dataset().tablename)}",
+									"sqlReaderQuery": {
+										"value": "SELECT * FROM @{concat(item().schemaname,'.',item().tablename)}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -72,10 +75,6 @@
 									"referenceName": "AzureSqlTable5",
 									"type": "DatasetReference",
 									"parameters": {
-										"schemaname": {
-											"value": "@item().SchemaName",
-											"type": "Expression"
-										},
 										"tablename": {
 											"value": "@item().TableName",
 											"type": "Expression"
