@@ -92,14 +92,6 @@
 					"referenceName": "AzureSqlDatabase1",
 					"type": "LinkedServiceReference"
 				},
-				"parameters": {
-					"schemaname": {
-						"type": "string"
-					},
-					"tablename": {
-						"type": "string"
-					}
-				},
 				"annotations": [],
 				"type": "AzureSqlTable",
 				"schema": [],
@@ -231,7 +223,7 @@
 										"source": {
 											"type": "AzureSqlSource",
 											"sqlReaderQuery": {
-												"value": "SELECT * FROM @{concat(dataset().schemaname,'.',dataset().tablename)}",
+												"value": "SELECT * FROM @{concat(item().schemaname,'.',item().tablename)}",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -240,16 +232,7 @@
 										"dataset": {
 											"referenceName": "AzureSqlTable5",
 											"type": "DatasetReference",
-											"parameters": {
-												"schemaname": {
-													"value": "@item().SchemaName",
-													"type": "Expression"
-												},
-												"tablename": {
-													"value": "@item().TableName",
-													"type": "Expression"
-												}
-											}
+											"parameters": {}
 										}
 									}
 								}
